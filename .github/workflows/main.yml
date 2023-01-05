@@ -2,9 +2,9 @@
 name: Build and Test
 on:
   push:
-    branches: [ "foxy" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "foxy" ]
+    branches: [ "master" ]
 permissions:
   contents: read
 
@@ -20,8 +20,6 @@ jobs:
         required-ros-distributions: foxy
     - name: Checkout repository    
       uses: actions/checkout@v3
-      with:
-        ref: foxy
     - name: Build 
       run: |
         source /opt/ros/foxy/setup.bash
