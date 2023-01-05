@@ -1,4 +1,4 @@
-# Sample ROS2 project
+# Sample ROS2 project [![Build and Test](https://github.com/nfiniity/sample_ros_node/actions/workflows/main.yml/badge.svg)](https://github.com/nfiniity/sample_ros_node/actions/workflows/main.yml)
 
 An simple ROS2 node example with message generation in C++.
 
