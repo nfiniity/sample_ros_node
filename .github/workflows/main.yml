@@ -26,7 +26,7 @@ jobs:
       run: |
         source /opt/ros/foxy/setup.bash
         colcon build
-        colcon test --packages-select vehicledata --event-handlers console_direct+
+        colcon test --packages-select sample --event-handlers console_direct+
     - name: Run Tests
       run: |
         cd dev_ws/build/sample
