@@ -7,7 +7,7 @@ namespace sample {
 
 class SampleNode : public rclcpp::Node {
  public:
-  explicit SampleNode();
+  SampleNode();
 
  private:
   // Methods
