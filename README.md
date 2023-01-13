@@ -36,7 +36,7 @@ For message generation the following files should contain the content below:
 
 `rosidl_generate_interfaces(${PROJECT_NAME} "msg/MyMessage.msg" "srv/MyService.srv")`
 
-#### package.xml
+##### package.xml
 `<build_depend>rosidl_default_generators</build_depend>`
 
 `<exec_depend>rosidl_default_runtime</exec_depend>`
@@ -46,15 +46,15 @@ For message generation the following files should contain the content below:
 
 ## Create components
 
-### Source file
+For creating a component in ROS the following files should add the content below: 
 
-Add to the source files the following:
+##### Source file
 
 `#include "rclcpp_components/register_node_macro.hpp"`
 
 `RCLCPP_COMPONENTS_REGISTER_NODE(MyNamespace::MyClassNode)`
 
-### CMakeLists.txt
+##### CMakeLists.txt
 
 `find_package(rclcpp REQUIRED)`
 
@@ -74,7 +74,7 @@ Add to the source files the following:
 
 `install(TARGETS MyComponent ARCHIVE DESTINATION lib LIBRARY DESTINATION lib RUNTIME DESTINATION bin)`
 
-### package.xml
+##### package.xml
 
 `<depend>rclcpp</depend>`
 
