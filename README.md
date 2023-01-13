@@ -31,11 +31,14 @@ Still in the root of your workspace, dev_ws, run the tests:
 
 ### CMakeLists.txt
 `find_package(rosidl_default_generators REQUIRED)`
+
 `rosidl_generate_interfaces(${PROJECT_NAME} "msg/MyMessage.msg" "srv/MyService.srv")`
 
-### Edit package.xml
+### package.xml
 `<build_depend>rosidl_default_generators</build_depend>`
+
 `<exec_depend>rosidl_default_runtime</exec_depend>`
+
 `<member_of_group>rosidl_interface_packages</member_of_group>`
 
 
