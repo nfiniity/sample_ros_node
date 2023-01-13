@@ -27,6 +27,64 @@ Still in the root of your workspace, dev_ws, run the tests:
 
 `colcon test --packages-select sample --event-handlers console_direct+`
 
+## Create ROS-Messages
+
+### CMakeLists.txt
+`find_package(rosidl_default_generators REQUIRED)`
+`rosidl_generate_interfaces(${PROJECT_NAME} "msg/MyMessage.msg" "srv/MyService.srv")`
+
+### Edit package.xml
+`<build_depend>rosidl_default_generators</build_depend>`
+`<exec_depend>rosidl_default_runtime</exec_depend>`
+`<member_of_group>rosidl_interface_packages</member_of_group>`
+
+
+## Create components
+
+### Source file
+
+Add to the source files the following:
+
+`#include "rclcpp_components/register_node_macro.hpp"`
+
+`RCLCPP_COMPONENTS_REGISTER_NODE(MyNamespace::MyClassNode)`
+
+### CMakeLists.txt
+
+`find_package(rclcpp REQUIRED)`
+
+`find_package(rclcpp_components REQUIRED)`
+
+`set(node_plugins "")`
+
+`add_library(MyComponent SHARED src/my_component.cpp)`
+
+`rclcpp_components_register_nodes(MyComponent "MyNamespace::MyClassNode")`
+
+`target_compile_definitions(MyComponent PRIVATE "COMPOSITION_BUILDING_DLL")`
+
+`ament_target_dependencies(MyComponent "rclcpp" "rclcpp_components")`
+
+`set(node_plugins "${node_plugins}MyNamespace::MyClassNode;$<TARGET_FILE:MyComponent>\n")`
+
+`install(TARGETS MyComponent ARCHIVE DESTINATION lib LIBRARY DESTINATION lib RUNTIME DESTINATION bin)`
+
+### package.xml
+
+`<depend>rclcpp</depend>`
+
+`<depend>rclcpp_components</depend>`
+
+### Usage
+
+Start component container on a terminal:
+
+`ros2 run rclcpp_components components_container`
+
+Next, load on a second terminal:
+
+`ros2 component load /ComponentManager MyNodeName MyNamespace::MyClassNode`
+
 ## Licence
 
 This project is licensed under MIT. See [LICENSE](./LICENSE) file for details.
