@@ -27,14 +27,16 @@ Still in the root of your workspace, dev_ws, run the tests:
 
 `colcon test --packages-select sample --event-handlers console_direct+`
 
-## Create ROS-Messages
+## Create messages
 
-### CMakeLists.txt
+For message generation the following files should contain the content below: 
+
+##### CMakeLists.txt
 `find_package(rosidl_default_generators REQUIRED)`
 
 `rosidl_generate_interfaces(${PROJECT_NAME} "msg/MyMessage.msg" "srv/MyService.srv")`
 
-### package.xml
+#### package.xml
 `<build_depend>rosidl_default_generators</build_depend>`
 
 `<exec_depend>rosidl_default_runtime</exec_depend>`
