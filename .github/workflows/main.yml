@@ -24,11 +24,10 @@ jobs:
       uses: actions/checkout@v4
     - name: Build 
       run: |
-        cd dev_ws
         source /opt/ros/humble/setup.bash
         colcon build
         colcon test --packages-select sample --event-handlers console_direct+
     - name: Run Tests
       run: |
-        cd dev_ws/build/sample
+        cd build/sample
         ./sample_test
